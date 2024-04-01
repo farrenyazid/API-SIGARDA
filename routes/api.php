@@ -47,7 +47,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
 Route::get('/posts', [PostController::class, 'index']);
 Route::get('/posts/{id}', [PostController::class, 'show']);
 
-Route::post('/login', [AuthenticationController::class, 'login']);
+Route::post('login', [AuthenticationController::class, 'login']);
+Route::post('register', [AuthenticationController::class, 'register']);
 
 //UPVOTE ROUTE
 Route::post('/api/posts/{id}/upvote', [UpvoteController::class, 'upvote']);
