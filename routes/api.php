@@ -42,31 +42,25 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/comment', [CommentController::class, 'store']);
     Route::patch('/comment/{id}', [CommentController::class, 'update'])->middleware('pemilik-komentar');
     Route::delete('/comment/{id}', [CommentController::class, 'destroy'])->middleware('pemilik-komentar');
-});
 
-Route::get('/posts', [PostController::class, 'index']);
-Route::get('/posts/{id}', [PostController::class, 'show']);
+    Route::post('/api/posts/{id}/upvote', [UpvoteController::class, 'upvote']);
+
+
+    Route::post('/api/comments/{id}/like', [CommentLikeController::class, 'like']);
+    Route::delete('/api/comments/{id}/like', [CommentLikeController::class, 'unlike']);
+
+    Route::get('/api/forum-recommendations', [ForumRecommendationController::class, 'getRecommendations']);
+
+    Route::get('/api/posts/{post}/comments', [CommentController::class, 'index']);
+    Route::post('/api/comments', [CommentController::class, 'store']);
+    Route::put('/api/comments/{id}', [CommentController::class, 'update']);
+    Route::delete('/api/comments/{id}', [CommentController::class, 'destroy']);
+
+    Route::get('/posts', [PostController::class, 'index']);
+    Route::get('/posts/{id}', [PostController::class, 'show']);
+});
 
 Route::post('login', [AuthenticationController::class, 'login']);
 Route::post('register', [AuthenticationController::class, 'register']);
 
-//UPVOTE ROUTE
-Route::post('/api/posts/{id}/upvote', [UpvoteController::class, 'upvote']);
-   
-//COMMENT LIKE ROUTE
 
-Route::post('/api/comments/{id}/like', [CommentLikeController::class, 'like']);
-Route::delete('/api/comments/{id}/like', [CommentLikeController::class, 'unlike']);
-
-//FORUM RECOMMENDATION ROUTE
-Route::get('/api/forum-recommendations', [ForumRecommendationController::class, 'getRecommendations']);
-
-//COMMENTS ROUTE
-// Retrieve comments for a specific post
-Route::get('/api/posts/{post}/comments', [CommentController::class, 'index']);
-// Create a new comment
-Route::post('/api/comments', [CommentController::class, 'store']);
-// Update an existing comment
-Route::put('/api/comments/{id}', [CommentController::class, 'update']);
-// Delete a comment
-Route::delete('/api/comments/{id}', [CommentController::class, 'destroy']);
