@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\FollowController;
 use App\Http\Controllers\UpvoteController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CommentLikeController;
@@ -70,3 +71,7 @@ Route::post('/api/comments', [CommentController::class, 'store']);
 Route::put('/api/comments/{id}', [CommentController::class, 'update']);
 // Delete a comment
 Route::delete('/api/comments/{id}', [CommentController::class, 'destroy']);
+
+//FOLLOW ROUTES
+Route::post('/api/users/{user}/follow', [FollowController::class, 'store']);
+

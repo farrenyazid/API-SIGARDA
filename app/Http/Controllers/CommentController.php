@@ -48,6 +48,6 @@ class CommentController extends Controller
         $comments = $post->comments()->with(['commentator:id,username'])->get();
 
         return CommentResource::collection($comments);
-    }
+    } 
 
 }
