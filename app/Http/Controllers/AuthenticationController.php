@@ -15,15 +15,15 @@ class AuthenticationController extends Controller
     {
         try {
             $request->validate([
-                'first_name' => ['required', 'string', 'max:255'],
-                'last_name' => ['required', 'string', 'max:255'],
+                'firstname' => ['required', 'string', 'max:255'],
+                'lastname' => ['required', 'string', 'max:255'],
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
                 'password' => ['required', 'string', 'min:8'],
             ]);
 
             User::create([
-                'first_name' => $request->first_name,
-                'last_name' => $request->last_name,
+                'firstname' => $request->firstname,
+                'lastname' => $request->lastname,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
             ]);
